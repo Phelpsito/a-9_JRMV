@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawCharts);
+
+      function drawCharts() {
+        // Gráfico de líneas (Pobreza y pobreza extrema)
+        var data1 = google.visualization.arrayToDataTable([
+          ['Año', 'Pobreza (%)', 'Pobreza Extrema (%)'],
+          ['2008', 44.4, 11.0],
+          ['2018', 41.9, 7.4]
+        ]);
+        var options1 = { title: 'Evolución de la Pobreza en México (2008-2018)', curveType: 'function', legend: { position: 'bottom' } };
+        var chart1 = new google.visualization.LineChart(document.getElementById('line_chart'));
+        chart1.draw(data1, options1);
+
+        // Gráfico de barras apiladas (Carencias sociales)
+        var data2 = google.visualization.arrayToDataTable([
+          ['Año', 'Promedio de Carencias', 'Salud (%)', 'Seguridad Social (%)', 'Calidad de Vivienda (%)'],
+          ['2008', 2.8, 38.4, 65.0, 17.7],
+          ['2018', 2.2, 16.2, 57.3, 11.1]
+        ]);
+        var options2 = { title: 'Carencias Sociales (2008-2018)', isStacked: true, legend: { position: 'bottom' } };
+        var chart2 = new google.visualization.BarChart(document.getElementById('bar_chart_stacked'));
+        chart2.draw(data2, options2);
+
+        // Gráfico de barras comparativas (Zonas rurales vs urbanas)
+        var data3 = google.visualization.arrayToDataTable([
+          ['Año', 'Pobreza Rural (%)', 'Pobreza Urbana (%)'],
+          ['2008', 62.5, 38.9],
+          ['2018', 55.3, 37.6]
+        ]);
+        var options3 = { title: 'Pobreza en Zonas Rurales vs Urbanas (2008-2018)', legend: { position: 'bottom' } };
+        var chart3 = new google.visualization.BarChart(document.getElementById('bar_chart_comparative'));
+        chart3.draw(data3, options3);
+
+        // Gráfico de columnas (Pobreza en Población Indígena y No Indígena)
+        var data4 = google.visualization.arrayToDataTable([
+          ['Año', 'Población Indígena (%)', 'Población No Indígena (%)'],
+          ['2008', 76.0, 41.4],
+          ['2018', 74.9, 39.4]
+        ]);
+        var options4 = { title: 'Pobreza en Población Indígena y No Indígena (2008-2018)', legend: { position: 'bottom' } };
+        var chart4 = new google.visualization.ColumnChart(document.getElementById('column_chart'));
+        chart4.draw(data4, options4);
+
+        // Gráfico de áreas (Ingresos por debajo de la línea de pobreza)
+        var data5 = google.visualization.arrayToDataTable([
+          ['Año', 'Línea de Pobreza (%)', 'Línea de Pobreza Extrema (%)'],
+          ['2008', 49.0, 16.8],
+          ['2018', 48.8, 16.8]
+        ]);
+        var options5 = { title: 'Población por debajo de la Línea de Pobreza (2008-2018)', legend: { position: 'bottom' } };
+        var chart5 = new google.visualization.AreaChart(document.getElementById('area_chart'));
+        chart5.draw(data5, options5);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Tablero de Visualización de Pobreza en México</h1>
+    <div id="line_chart" style="width: 900px; height: 500px;"></div>
+    <div id="bar_chart_stacked" style="width: 900px; height: 500px;"></div>
+    <div id="bar_chart_comparative" style="width: 900px; height: 500px;"></div>
+    <div id="column_chart" style="width: 900px; height: 500px;"></div>
+    <div id="area_chart" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
